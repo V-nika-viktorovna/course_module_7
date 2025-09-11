@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление продукта{% endblock %}
+
+{% block content %}
+
+<div class="container-md-4">
+    <div class="row">
+        <div class="col-6">
+            <form class="row" method="post" enctype="multipart/form-data">
+                <div class="card">
+                  <p class="card-taxt">Вы действительно хотите удалить рассылку?: {{object.title}}</p>
+                    <div class="card-body">
+                        {% csrf_token %}
+                    </div>
+                    <div class="col-6">
+                      <button type="submit" class="btn btn-primary">
+                          Удалить
+                      </button>
+                    <a class="btn btn-primary" href="{% url 'mailing:newsletter_list' %}">Отмена</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-dark">Сервис рассылок</h1>
+            {% if user.is_authenticated %}
+            <h6 >Добро пожаловать! Вы вошли как {{ user.email }}</h6>
+            {% else %}
+            <h4 class="fw-dark">Войдите или зарегистрируйтесь</h4>
+            {% endif %}
+        </div>
+    </div>
+</section>
+<h2>Статистика сервиса:</h2>
+<ul class="list-group">
+              <li class="list-group-item">Количество рассылок всего: {{mailing_count}}</li>
+              <li class="list-group-item">Количество активных рассылок: {{active_mailing_count}}</li>
+              <li class="list-group-item">Количество уникальных клиентов: {{ unique_recipient_count }}</li>
+            </ul>
+{% endblock %}
