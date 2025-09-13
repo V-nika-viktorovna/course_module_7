@@ -1,0 +1,32 @@
+{% extends 'mailing/base.html' %}
+
+{% block content %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="/media/{{ object.preview }}" alt="Product Image" class="Image fluid">
+                    <div class="card-body">
+                        <small class="text-body-secondary">{{ object.date_of_creation }}</small>
+<!--                        <p class="card-text">{{ object }} / {{ object.slug }}</p>-->
+                        <h4>{{ object }}</h4>
+                        <p class="card-text">{{ object.content }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a
+                                        href="{% url 'mailing:list' %}" class="text-black">На Публикации</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a
+                                        href="{% url 'mailing:update' object.slug %}" class="text-black">Редактировать</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a
+                                        href="{% url 'mailing:delete' object.slug %}" class="text-black">Удалить</a></button>
+                            </div>
+                            <small class="text-body-secondary">Просмотров: {{ object.view_counter }} </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

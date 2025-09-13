@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load my_tags %}
+{% block content %}
+  <section class="py-1 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Сервис рассылок</h1>
+        <h2 class="fw-light">Раздел "Сообщения"</h2>
+        <a class="btn btn btn-outline-primary mt-4" href="{% url 'mailing:message_create' %}" role="button">Добавить Сообщение</a>
+      </div>
+    </div>
+  </section>
+
+
+      <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
+            {% for message in object_list %}
+            <ol class="list-group list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="col">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <p class="card-text">{{ message }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      {% if user == message.owner %}
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'mailing:message_detail' message.pk %}" class="text-black">Подробнее</a></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'mailing:message_update' message.pk %}" class="text-black">Редактирование</a></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'mailing:message_delete' message.pk %}" class="text-black">Удалить</a></button>
+                      {% endif %}
+                    </div>
+                    <small class="text-body-secondary px-3">Автор: {{ message.owner }}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+               </li>
+            </ol>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endblock %}
