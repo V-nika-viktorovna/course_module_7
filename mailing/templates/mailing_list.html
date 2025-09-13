@@ -29,11 +29,12 @@
               <p class="card-text">{{ mailing }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
+                  {% if user == mailing.owner or perms.mailing.set_is_active %}
                   <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'mailing:mailing_detail' mailing.pk %}" class="text-black">Подробнее</a></button>
-                  {% if user == newsletter.author %}
+                  {% endif %}
+                  {% if user == mailing.owner %}
                   <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'mailing:mailing_update' mailing.pk %}" class="text-black">Редактирование</a></button>
                   {% endif %}
-
                   {% if user == mailing.owner %}
                   <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'mailing:mailing_delete' mailing.pk %}" class="text-black">Удалить</a></button>
                   {% endif %}
@@ -41,14 +42,14 @@
                 <small class="text-body-secondary px-3">Автор: {{ mailing.owner }}</small>
               </div>
                   {% if user.is_authenticated %}
+                  {% if user == mailing.owner or perms.mailing.set_is_active %}
+                  <a href="{% url 'mailing:launch_one' mailing.pk %}" class="double-border-button">Запустить вне расписания</a>
+                  {% endif %}
                   {% if perms.mailing.set_is_active %}
                   {% if mailing.is_active %}
                   <a href="{% url 'mailing:toggle_activity' mailing.pk %}" class="double-border-button">Отключить</a>
                   {% else %}
                   <a href="{% url 'mailing:toggle_activity' mailing.pk %}" class="double-border-button">Активировать</a>
-                  {% endif %}
-                  {% if mailing.is_active %}
-                  <a href="{% url 'mailing:launch_one' mailing.pk %}" class="double-border-button">Запустить вне расписания</a>
                   {% endif %}
                   {% endif %}
                   {% endif %}

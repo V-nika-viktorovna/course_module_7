@@ -42,7 +42,7 @@ urlpatterns = [path("", IndexView.as_view(), name="index"),
 
                path("recipient/create/", RecipientCreateView.as_view(), name="recipient_create"),
 
-               path("clients/<int:pk>/update/", RecipientUpdateView.as_view(), name="recipient_update"),
+               path("recipient/<int:pk>/update/", RecipientUpdateView.as_view(), name="recipient_update"),
 
                path("recipient/<int:pk>/delete/", RecipientDeleteView.as_view(), name="recipient_delete"),
 

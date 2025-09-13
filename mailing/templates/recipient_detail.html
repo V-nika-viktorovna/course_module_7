@@ -10,9 +10,11 @@
                         <p class="card-text">{{ recipient }}</p>
                         <p class="card-text">email Получателя: {{ recipient.email }}</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'mailing:recipient_list' %}" class="text-black">На список клиентов</a></button>
-                            <small class="text-body-secondary">Автор: {{ object.owner }} </small>
+                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'mailing:recipient_list' %}" class="text-black">Список получателей</a></button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'mailing:recipient_delete' recipient.pk %}" class="text-black">Удалить получателя</a></button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'mailing:recipient_update' recipient.pk %}" class="text-black">Редактировать получателя</a></button>
                         </div>
+                        <small class="text-body-secondary">Автор: {{ object.owner }} </small>
                     </div>
                 </div>
             </div>

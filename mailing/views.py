@@ -42,7 +42,7 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
     model = Mailing
     template_name = "mailing_form.html"
     form_class = MailingForm
-    success_url = reverse_lazy("mailing:mailing_detail")
+    success_url = reverse_lazy("mailing:mailing_list")
 
     def get_form_class(self):
         """Метод выводит пользователю форму для редактирования,
@@ -93,7 +93,8 @@ class MessageUpdateView(LoginRequiredMixin, UpdateView):
 
     model = Message
     form_class = MessageForm
-    success_url = reverse_lazy("mailing:message_detail")
+    template_name = "message_form.html"
+    success_url = reverse_lazy("mailing:message_list")
 
 
 class MessageDeleteView(LoginRequiredMixin, DeleteView):
@@ -133,11 +134,13 @@ class RecipientCreateView(LoginRequiredMixin, CreateView):
 class RecipientUpdateView(LoginRequiredMixin, UpdateView):
     model = Recipient
     form_class = RecipientForm
-    success_url = "mailing:recipient_detail"
+    template_name = "recipient_form.html"
+    success_url = reverse_lazy("mailing:recipient_list")
 
 
 class RecipientDeleteView(LoginRequiredMixin, DeleteView):
     model = Recipient
+    template_name = "recipient_confirm_delete.html"
     success_url = reverse_lazy("mailing:recipient_list")
 
 
